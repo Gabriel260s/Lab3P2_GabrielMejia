@@ -9,9 +9,10 @@ import java.util.Map;
 public class Usuarios {
 
     private String nombreCompleto, nombreUsuario, password;
-    private ArrayList<String> nombreGrupos;
-    private Map<String, ArrayList<Lab3P2_GabrielMejia.Mensajes>> mapaMensajes;
+    public ArrayList<String> nombreGrupos;
+    public Map<String, ArrayList<Lab3P2_GabrielMejia.Mensajes>> mapaMensajes;
     private TipoDeUsuario tipoDeUsuario; 
+    private String Departamento;
 
   
     public enum TipoDeUsuario {
@@ -19,13 +20,14 @@ public class Usuarios {
     }
 
    
-    public Usuarios(String nombreCompleto, String nombreUsuario, String password, TipoDeUsuario tipoDeUsuario, ArrayList<String> nombreGrupos, Map<String, ArrayList<Lab3P2_GabrielMejia.Mensajes>> mapaMensajes) {
+    public Usuarios(String nombreCompleto, String nombreUsuario, String password,String departamento, TipoDeUsuario tipoDeUsuario, ArrayList<String> nombreGrupos, Map<String, ArrayList<Lab3P2_GabrielMejia.Mensajes>> mapaMensajes) {
         this.nombreCompleto = nombreCompleto;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
         this.tipoDeUsuario = tipoDeUsuario;
         this.nombreGrupos = nombreGrupos; 
         this.mapaMensajes = mapaMensajes; 
+        this.Departamento= departamento;
     }
 
     public String getNombreCompleto() {
@@ -74,6 +76,11 @@ public class Usuarios {
 
     public void setTipoDeUsuario(TipoDeUsuario tipoDeUsuario) {
         this.tipoDeUsuario = tipoDeUsuario;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuarios{" + "nombreCompleto=" + nombreCompleto + ", nombreUsuario=" + nombreUsuario + ", password=" + password + ", nombreGrupos=" + nombreGrupos + ", mapaMensajes=" + mapaMensajes + ", tipoDeUsuario=" + tipoDeUsuario + ", Departamento=" + Departamento + '}';
     }
 
     
