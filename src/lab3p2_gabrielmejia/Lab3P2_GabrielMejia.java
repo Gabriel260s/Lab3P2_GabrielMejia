@@ -5,7 +5,9 @@
 package lab3p2_gabrielmejia;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 /**
@@ -18,11 +20,11 @@ public class Lab3P2_GabrielMejia {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println(codificar("HOLA"));
-        String Clave = codificar("HOLA");
-        System.out.println(decodificar(Clave));
-        Scanner input = new Scanner(System.in);
+
+        Map<String, ArrayList<Mensajes>> chat = new HashMap<>();
+        Map<String, ArrayList<Usuarios>> grupos = new HashMap<>();
         System.out.println("Bienvenido\n\n1. Crear Usuario\n2.Ingresar  como empleado\n3.Ingresar como administrador\n4.Salir");
+        Scanner input = new Scanner(System.in);
         boolean enMenu = true;
         while (enMenu) {
             try {
@@ -32,9 +34,17 @@ public class Lab3P2_GabrielMejia {
                     case 1:
                         System.out.println("Seleccione una opcion: \n1 .Crear Empleado\n2. Crear directivo");
                         int optCrear = input.nextInt();
+                        ArrayList<String> gruposUser = new ArrayList<>();
                         switch (optCrear) {
-                            case 1:
 
+                            case 1:
+                                System.out.println("Ingrese el nombre del empleado: ");
+                                String nombreEmp = input.nextLine();
+                                System.out.println("Ingrese su nombre de usuario: ");
+                                String nombreUserEmp = input.nextLine();
+                                System.out.println("Ingrese su contraseña(sin espacios y sin usar el signo ~): ");
+                                String password = input.next();
+                                Usuarios empleado = new Usuarios(nombreEmp, nombreUserEmp, password, Usuarios.TipoDeUsuario.EMPLEADO, gruposUser, mapaMensajes);
                                 break;
                             case 2:
                                 break;
@@ -94,11 +104,16 @@ public class Lab3P2_GabrielMejia {
         }
         return claveDescifrada;
     }
-    public static boolean validarInicioSecion(String usuario, String contraseña, Usuarios persona){
-        if(usuario.equals(persona.getNombreUsuario())&&contraseña.equals(persona.getPassword())){
-            return true;
-        }else{
-            return false;
-        }
+
+    public static boolean validarInicioSecion(String usuario, String contraseña, Usuarios persona) {
+        return usuario.equals(persona.getNombreUsuario()) && contraseña.equals(persona.getPassword());
     }
+
+    public static class Mensajes {
+
+        private String receptor;
+        private String contenido;
+
+    }
+
 }

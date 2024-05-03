@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lab3p2_gabrielmejia;
 
 import java.util.ArrayList;
@@ -10,21 +6,26 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author gabri
- */
 public class Usuarios {
 
     private String nombreCompleto, nombreUsuario, password;
-    private ArrayList<String> nombreGrupos = new ArrayList<>();
-    private Map<String, ArrayList<String>> mapaMensajes = new LinkedHashMap<>();
- 
+    private ArrayList<String> nombreGrupos;
+    private Map<String, ArrayList<Lab3P2_GabrielMejia.Mensajes>> mapaMensajes;
+    private TipoDeUsuario tipoDeUsuario; 
 
-    public Usuarios(String nombreCompleto, String nombreUsuario, String password) {
+  
+    public enum TipoDeUsuario {
+        DIRECTIVO, EMPLEADO
+    }
+
+   
+    public Usuarios(String nombreCompleto, String nombreUsuario, String password, TipoDeUsuario tipoDeUsuario, ArrayList<String> nombreGrupos, Map<String, ArrayList<Lab3P2_GabrielMejia.Mensajes>> mapaMensajes) {
         this.nombreCompleto = nombreCompleto;
         this.nombreUsuario = nombreUsuario;
         this.password = password;
+        this.tipoDeUsuario = tipoDeUsuario;
+        this.nombreGrupos = nombreGrupos; 
+        this.mapaMensajes = mapaMensajes; 
     }
 
     public String getNombreCompleto() {
@@ -59,16 +60,22 @@ public class Usuarios {
         this.nombreGrupos = nombreGrupos;
     }
 
-    public Map<String, ArrayList<String>> getMapaMensajes() {
+    public Map<String, ArrayList<Lab3P2_GabrielMejia.Mensajes>> getMapaMensajes() {
         return mapaMensajes;
     }
 
-    public void setMapaMensajes(Map<String, ArrayList<String>> mapaMensajes) {
+    public void setMapaMensajes(Map<String, ArrayList<Lab3P2_GabrielMejia.Mensajes>> mapaMensajes) {
         this.mapaMensajes = mapaMensajes;
     }
 
-    public enum TipoDeUsuario {
-        DIRECTIVO, EMPLEADO
+    public TipoDeUsuario getTipoDeUsuario() {
+        return tipoDeUsuario;
     }
+
+    public void setTipoDeUsuario(TipoDeUsuario tipoDeUsuario) {
+        this.tipoDeUsuario = tipoDeUsuario;
+    }
+
+    
 
 }
