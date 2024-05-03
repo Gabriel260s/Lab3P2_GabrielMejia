@@ -12,9 +12,6 @@ import java.util.Scanner;
  */
 public class Lab3P2_GabrielMejia {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
 
         Map<String, ArrayList<Mensajes>> chat = new HashMap<>();
