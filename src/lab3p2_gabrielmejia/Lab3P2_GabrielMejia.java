@@ -33,9 +33,8 @@ public class Lab3P2_GabrielMejia {
         Directivos.add(directivo2);
         Scanner input = new Scanner(System.in);
         boolean enMenu = true;
-
-        while (enMenu) {
-            try {
+        try {
+            while (enMenu) {
 
                 System.out.println("Elije una opcion: \n1. Crear Usuario\n2.Ingresar  como empleado\n3.Ingresar como administrador\n4.Salir");
                 int opt = input.nextInt();
@@ -52,6 +51,10 @@ public class Lab3P2_GabrielMejia {
                                 String nombreEmp = input.nextLine();
                                 System.out.println("Ingrese su nombre de usuario: ");
                                 String nombreUserEmp = input.nextLine();
+                                if(nombreEnLista(nombreEmp, Empleados)&&nombreEnLista(nombreUserEmp, Directivos)){
+                                    System.out.println("Ese nombre ya existe.");
+                                    break;
+                                }
                                 System.out.println("Ingrese su contraseña(sin espacios y sin usar el signo ~): ");
                                 String password = codificar(input.next());
                                 System.out.println("Ingrese su departamento: ");
@@ -111,10 +114,11 @@ public class Lab3P2_GabrielMejia {
                                         System.out.println("No tienes mensajes");
                                     }
                                     break;
-                                case 3:
+                                case 3: 
+                                    System.out.println("Tus grupos son");
                                     break;
                                 default:
-                                    throw new AssertionError();
+                                    System.out.println("Opcion no valida");
                             }
                         }
 
@@ -126,7 +130,7 @@ public class Lab3P2_GabrielMejia {
                         String contraseñaDirect = input.nextLine();
                         if (validarInicioSecion(usuarioDirect, contraseñaDirect, Directivos)) {
 
-                            System.out.println("Que le gustaria hacer?\n1.Enviar un mensaje\n2. Ver mis chat\n3.Ver mis grupos");
+                            System.out.println("Que le gustaria hacer?\n1.Enviar un mensaje\n2. Ver mis chat\n3.Ver mis grupos\n4.Agregar un grupo");
                             int optUSER = input.nextInt();
                             switch (optUSER) {
                                 case 1:
@@ -153,6 +157,9 @@ public class Lab3P2_GabrielMejia {
                                     break;
                                 case 3:
                                     break;
+                                case 4:
+
+                                    break;
                                 default:
                                     throw new AssertionError();
                             }
@@ -166,9 +173,9 @@ public class Lab3P2_GabrielMejia {
                         System.out.println("Esa opcion no existe.");
                 }
 
-            } catch (InputMismatchException e) {
-                System.out.println("Solo ingrese numeros validos.");
             }
+        } catch (InputMismatchException e) {
+            System.out.println("Solo ingrese numeros validos.");
         }
     }
 
@@ -186,6 +193,14 @@ public class Lab3P2_GabrielMejia {
 
         return claveCifrada;
     }
+  public static boolean nombreEnLista(String Nombre, ArrayList<Usuarios> lista) {
+    for (int i = 0; i < lista.size(); i++) {
+        if (lista.get(i).getNombreUsuario().equals(Nombre)) {
+            return true;
+        }
+    }
+    return false;
+}
 
     public static String decodificar(String claveCodificada) {
         String claveDescifrada = "";

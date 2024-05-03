@@ -1,9 +1,6 @@
 package lab3p2_gabrielmejia;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Usuarios {
@@ -28,6 +25,14 @@ public class Usuarios {
         this.nombreGrupos = nombreGrupos; 
         this.mapaMensajes = mapaMensajes; 
         this.Departamento= departamento;
+    }
+
+    public String getDepartamento() {
+        return Departamento;
+    }
+
+    public void setDepartamento(String Departamento) {
+        this.Departamento = Departamento;
     }
 
     public String getNombreCompleto() {
