@@ -51,8 +51,9 @@ public class Lab3P2_GabrielMejia {
                                 String nombreEmp = input.nextLine();
                                 System.out.println("Ingrese su nombre de usuario: ");
                                 String nombreUserEmp = input.nextLine();
-                                if(nombreEnLista(nombreEmp, Empleados)&&nombreEnLista(nombreUserEmp, Directivos)){
-                                    System.out.println("Ese nombre ya existe.");
+
+                                if (nombreEnLista(nombreUserEmp, Empleados) || nombreEnLista(nombreUserEmp, Directivos)) {
+                                    System.out.println("Ese nombre de usuario ya existe.");
                                     break;
                                 }
                                 System.out.println("Ingrese su contraseña(sin espacios y sin usar el signo ~): ");
@@ -69,6 +70,10 @@ public class Lab3P2_GabrielMejia {
                                 String nombreDirec = input.nextLine();
                                 System.out.println("Ingrese su nombre de usuario: ");
                                 String nombreUserDirect = input.nextLine();
+                                if (nombreEnLista(nombreUserDirect, Empleados) || nombreEnLista(nombreUserDirect, Directivos)) {
+                                    System.out.println("Ese nombre de usuario ya existe.");
+                                    break;
+                                }
                                 System.out.println("Ingrese su contraseña(sin espacios y sin usar el signo ~): ");
                                 String passwordDirect = codificar(input.next());
                                 System.out.println("Ingrese su departamento: ");
@@ -114,7 +119,7 @@ public class Lab3P2_GabrielMejia {
                                         System.out.println("No tienes mensajes");
                                     }
                                     break;
-                                case 3: 
+                                case 3:
                                     System.out.println("Tus grupos son");
                                     break;
                                 default:
@@ -193,14 +198,15 @@ public class Lab3P2_GabrielMejia {
 
         return claveCifrada;
     }
-  public static boolean nombreEnLista(String Nombre, ArrayList<Usuarios> lista) {
-    for (int i = 0; i < lista.size(); i++) {
-        if (lista.get(i).getNombreUsuario().equals(Nombre)) {
-            return true;
+
+    public static boolean nombreEnLista(String Nombre, ArrayList<Usuarios> lista) {
+        for (int i = 0; i < lista.size(); i++) {
+            if (lista.get(i).getNombreUsuario().equals(Nombre)) {
+                return true;
+            }
         }
+        return false;
     }
-    return false;
-}
 
     public static String decodificar(String claveCodificada) {
         String claveDescifrada = "";
