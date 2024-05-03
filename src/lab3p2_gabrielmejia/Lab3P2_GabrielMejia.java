@@ -22,16 +22,21 @@ public class Lab3P2_GabrielMejia {
         ArrayList<Usuarios> Empleados = new ArrayList<>();
         ArrayList<Usuarios> Directivos = new ArrayList<>();
         ArrayList<String> gruposUser = new ArrayList<>();
-        Usuarios usuario1 = new Usuarios("Jose ", "Jose5", codificar("hola"), "IT", Usuarios.TipoDeUsuario.EMPLEADO, gruposUser, chat);
-        Usuarios usuario2 = new Usuarios("Juan ", "Juan2", codificar("hola"), "IT", Usuarios.TipoDeUsuario.EMPLEADO, gruposUser, chat);
+        ArrayList<Mensajes> MSG = new ArrayList<>();
+        Usuarios usuario1 = new Usuarios("Jose ", "Jose5", codificar("barco"), "IT", Usuarios.TipoDeUsuario.EMPLEADO, gruposUser, chat);
+        Usuarios usuario2 = new Usuarios("Juan ", "Juan2", codificar("avion"), "IT", Usuarios.TipoDeUsuario.EMPLEADO, gruposUser, chat);
         Empleados.add(usuario2);
         Empleados.add(usuario1);
+        Usuarios directivo1 = new Usuarios("Carlos", "Carlos5", codificar("gato"), "IT", Usuarios.TipoDeUsuario.EMPLEADO, gruposUser, chat);
+        Usuarios directivo2 = new Usuarios("Pablo", "Pablo8", codificar("perro"), "IT", Usuarios.TipoDeUsuario.EMPLEADO, gruposUser, chat);
+        Directivos.add(directivo1);
+        Directivos.add(directivo2);
         Scanner input = new Scanner(System.in);
         boolean enMenu = true;
 
         while (enMenu) {
             try {
-                
+
                 System.out.println("Elije una opcion: \n1. Crear Usuario\n2.Ingresar  como empleado\n3.Ingresar como administrador\n4.Salir");
                 int opt = input.nextInt();
                 switch (opt) {
@@ -79,31 +84,31 @@ public class Lab3P2_GabrielMejia {
                         String usuarioEmp = input.nextLine();
                         System.out.println("Ingrese su contraseña");
                         String contraseñaEmp = input.nextLine();
-                     
+
                         if (validarInicioSecion(usuarioEmp, contraseñaEmp, Empleados)) {
-                           
+
                             System.out.println("Que le gustaria hacer?\n1.Enviar un mensaje\n2. Ver mis chat\n3.Ver mis grupos");
                             int optUSER = input.nextInt();
                             switch (optUSER) {
                                 case 1:
+
                                     input.nextLine();
                                     System.out.println("Ingrese el nombre de usuario del receptor:");
                                     String receptor = input.nextLine();
                                     System.out.println("Ingrese el contenido del mensaje:");
                                     String contenido = input.nextLine();
                                     Mensajes msj = new Mensajes(receptor, contenido);
-
+                                    MSG.add(msj);
+                                    chat.put(receptor, MSG);
                                     System.out.println("Mensaje enviado.");
                                     break;
                                 case 2:
-                                    ArrayList<Mensajes> mensajesDeUsuario = chat.get(usuarioEmp);
-                                    if (mensajesDeUsuario != null && !mensajesDeUsuario.isEmpty()) {
-                                        System.out.println("Tus mensajes:");
-                                        for (Mensajes msg : mensajesDeUsuario) {
+                                    if (MSG != null) {
+                                        for (Mensajes msg : MSG) {
                                             System.out.println(" Mensaje: " + msg.getContenido());
                                         }
                                     } else {
-                                        System.out.println("No tienes mensajes.");
+                                        System.out.println("No tienes mensajes");
                                     }
                                     break;
                                 case 3:
@@ -119,7 +124,39 @@ public class Lab3P2_GabrielMejia {
                         String usuarioDirect = input.nextLine();
                         System.out.println("Ingrese su contraseña");
                         String contraseñaDirect = input.nextLine();
-                        validarInicioSecion(usuarioDirect, contraseñaDirect, Directivos);
+                        if (validarInicioSecion(usuarioDirect, contraseñaDirect, Directivos)) {
+
+                            System.out.println("Que le gustaria hacer?\n1.Enviar un mensaje\n2. Ver mis chat\n3.Ver mis grupos");
+                            int optUSER = input.nextInt();
+                            switch (optUSER) {
+                                case 1:
+
+                                    input.nextLine();
+                                    System.out.println("Ingrese el nombre de usuario del receptor:");
+                                    String receptor = input.nextLine();
+                                    System.out.println("Ingrese el contenido del mensaje:");
+                                    String contenido = input.nextLine();
+                                    Mensajes msj = new Mensajes(receptor, contenido);
+                                    MSG.add(msj);
+                                    chat.put(receptor, MSG);
+                                    System.out.println("Mensaje enviado.");
+                                    break;
+
+                                case 2:
+                                    if (MSG != null) {
+                                        for (Mensajes msg : MSG) {
+                                            System.out.println(" Mensaje: " + msg.getContenido());
+                                        }
+                                    } else {
+                                        System.out.println("No tienes mensajes");
+                                    }
+                                    break;
+                                case 3:
+                                    break;
+                                default:
+                                    throw new AssertionError();
+                            }
+                        }
                         break;
                     case 4:
                         System.out.println("Fin del programa");
