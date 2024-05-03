@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -16,11 +17,55 @@ import java.util.List;
 public class Usuarios {
 
     private String nombreCompleto, nombreUsuario, password;
-
     private ArrayList<String> nombreGrupos = new ArrayList<>();
-    private HashMap<String, ArrayList> mapaMensajes = new LinkedHashMap<>();
+    private Map<String, ArrayList<String>> mapaMensajes = new LinkedHashMap<>();
+ 
 
+    public Usuarios(String nombreCompleto, String nombreUsuario, String password) {
+        this.nombreCompleto = nombreCompleto;
+        this.nombreUsuario = nombreUsuario;
+        this.password = password;
+    }
 
+    public String getNombreCompleto() {
+        return nombreCompleto;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public ArrayList<String> getNombreGrupos() {
+        return nombreGrupos;
+    }
+
+    public void setNombreGrupos(ArrayList<String> nombreGrupos) {
+        this.nombreGrupos = nombreGrupos;
+    }
+
+    public Map<String, ArrayList<String>> getMapaMensajes() {
+        return mapaMensajes;
+    }
+
+    public void setMapaMensajes(Map<String, ArrayList<String>> mapaMensajes) {
+        this.mapaMensajes = mapaMensajes;
+    }
 
     public enum TipoDeUsuario {
         DIRECTIVO, EMPLEADO
